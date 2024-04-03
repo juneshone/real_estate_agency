@@ -8,6 +8,7 @@ class Flat(models.Model):
     new_building = models.BooleanField(
         null=True,
         blank=True,
+        default=None,
         db_index=True)
     created_at = models.DateTimeField(
         'Когда создано объявление',
