@@ -5,15 +5,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Flat(models.Model):
-    owner = models.CharField('ФИО владельца', max_length=200)
-    owner_pure_phone = PhoneNumberField(
-        'Нормализованный номер владельца',
-        null=True,
-        blank=True,
-        default=None,
-        db_index=True)
-    owners_phonenumber = models.CharField('Номер владельца', max_length=20)
     new_building = models.BooleanField(
+        'Новостройка',
         null=True,
         blank=True,
         default=None,
@@ -90,7 +83,7 @@ class Сomplaint(models.Model):
 
 
 class Owner(models.Model):
-    owner = models.CharField('ФИО владельца', max_length=200)
+    name = models.CharField('ФИО владельца', max_length=200, db_index=True)
     phonenumber = models.CharField('Номер владельца', max_length=20)
     pure_phone = PhoneNumberField(
         'Нормализованный номер владельца',
@@ -105,4 +98,4 @@ class Owner(models.Model):
         verbose_name='Квартиры в собственности')
 
     def __str__(self):
-        return f'{self.owner}'
+        return f'{self.name}'
