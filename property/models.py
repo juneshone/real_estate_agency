@@ -87,3 +87,22 @@ class Сomplaint(models.Model):
 
     def __str__(self):
         return f'{self.user} ({self.flat})'
+
+
+class Owner(models.Model):
+    owner = models.CharField('ФИО владельца', max_length=200)
+    phonenumber = models.CharField('Номер владельца', max_length=20)
+    pure_phone = PhoneNumberField(
+        'Нормализованный номер владельца',
+        null=True,
+        blank=True,
+        default=None,
+        db_index=True)
+    flats = models.ManyToManyField(
+        Flat,
+        db_index=True,
+        related_name="owners",
+        verbose_name='Квартиры в собственности')
+
+    def __str__(self):
+        return f'{self.owner}'
