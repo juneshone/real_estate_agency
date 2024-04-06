@@ -10,6 +10,7 @@ class Flat(models.Model):
         'Нормализованный номер владельца',
         null=True,
         blank=True,
+        default=None,
         db_index=True)
     owners_phonenumber = models.CharField('Номер владельца', max_length=20)
     new_building = models.BooleanField(
