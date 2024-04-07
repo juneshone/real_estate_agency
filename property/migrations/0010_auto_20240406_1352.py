@@ -7,7 +7,8 @@ from django.db import migrations
 
 def change_phonenumbers_format(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    flats = Flat.objects.all()
+    for flat in flats.iterator():
         phonenumber_parts = phonenumbers.parse(flat.owners_phonenumber, "RU")
         if phonenumbers.is_valid_number(phonenumber_parts):
             owner_pure_phone = phonenumbers.format_number(phonenumber_parts, phonenumbers.PhoneNumberFormat.E164)
